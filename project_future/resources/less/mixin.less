@@ -1,0 +1,67 @@
+/**
+* ======================================================
+* Basic 
+* ======================================================
+* @author Igor Kechaykin
+* @link http://github.com/kichMan/UPMan
+*/
+
+@import "reset.less";
+@import "css3hacks.less";
+@import "components.less";
+@import "components_mixin.less";
+
+
+@widthBase      : 300px;
+@fonSize        : 12px;
+@borderColor    : rgb(221, 221, 221);
+
+
+#plagin {
+    #reset (@widthBase);
+    //radius
+    &, button,
+    .progressbar,
+    .progressbar > span,
+    .progressbar > span:after,
+    .progressbar > span > span,
+    &> .wrapper
+    {
+        .css3_radius();
+    }
+    
+   label[for^="tab_"], button, button:after {
+        font-weight         : bold;
+        font-size           : 1.167em;
+        .css3_textShadow(0 1px 0 rgba(214, 214, 214, 0.8));
+        .css3_userSelect();
+    }
+
+    .parse_control {
+        border-bottom   : 1px dotted @borderColor;
+        margin-bottom   : 5px;
+    }
+
+    button {outline:none;}
+    
+    /* Installation of components in the main thing  */
+    #components_mixin ();
+    #components_mixin > #button_control();
+    #components_mixin > #button_inColor();
+    #components_mixin > #progressbar_base();
+    #components_mixin > #radioTab_base();
+    #components_mixin > #wrapper_base();
+   
+    //Animate
+    /*
+    &[data-status="empty"] .parse_control {
+        .css3_animation(e("sizein 0.6s"));
+        .keyframes_sizeOut(77px);
+    }
+    &:not([data-status="empty"]) .parse_control {
+        .css3_animation(e("sizeout 0.6s"));
+        .keyframes_sizeIn(77px);
+        height:auto;
+    }
+    */
+}

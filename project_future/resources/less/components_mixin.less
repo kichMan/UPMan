@@ -1,0 +1,88 @@
+/**
+* ======================================================
+* Initialization of components and assignment
+* of the user properties by it.
+* ======================================================
+* @author Igor Kechaykin
+* @link http://github.com/kichMan/UPMan
+*/
+
+#components_mixin () {
+/*USER SETTING*/
+    .parse_content > input[id^="tab_"], &> .wrapper
+    {
+        position: absolute;
+    }
+    
+/*--------------*/
+/* Initialization of components with the user properties */
+    #button ();
+    #progressbar();
+    #radioTab();
+    #wrapper();
+    
+/*Complete components*/
+    #button_control () {
+        .parse_control > button {
+            margin-bottom   : 5px;
+            &:after{
+                content     : "NO CONTROL";
+            }
+        }
+        &[data-status="error"] .parse_control > button:after { content : "ERROR"; }
+        &[data-status="pause"] .parse_control > button:after { content : "START"; }
+        &[data-status="active"] .parse_control > button:after { content : "PAUSE"; }
+    }
+    #button_inColor () {
+        button.btn_green, &[data-status="pause"] .parse_control > button
+        {
+            background-color: rgb(84,240,84);
+            color           : rgb(63, 180, 63);
+        }
+        button.btn_blue, &[data-status="active"] .parse_control > button
+        {
+            background-color: rgb(139, 185, 255);
+            color           : rgb(86, 132, 202);
+        }
+        button.btn_orange 
+        {
+            background-color: rgb(255, 153, 0);
+            color           : rgb(184, 112, 5);
+        }
+    }
+    #progressbar_base () {
+        .progressbar {
+            margin: 10px 0;
+        }
+        &[data-status="empty"] .progressbar > span { width: 0 !important; }
+        &[data-status="error"] .progressbar > span { background-color: rgb(244,35,35); }
+        &[data-status="pause"] .progressbar > span { background-color: rgb(139, 185, 255); }
+        &[data-status="active"] .progressbar > span { &:after, & > span {
+            .css3_animation(e("candymove 2s linear infinite"));.keyframes_candyMove();
+        }}
+    }
+    #radioTab_base() {
+        .parse_content {
+            &> input[id="tab_1"]:checked ~ section:nth-of-type(1),
+            &> input[id="tab_2"]:checked ~ section:nth-of-type(2),
+            &> input[id="tab_3"]:checked ~ section:nth-of-type(3)
+            {
+                height:auto;
+                .opacity(100);
+                .css3_transition(opacity ease-out 0.2s 0.1s);
+            }
+        }
+    }
+    #wrapper_base () {
+        &> .wrapper {
+            background  :rgba(255,255,255,0.8);
+            height      : 100%;
+            width       : 100%;
+            z-index     : 2;
+            &> i {
+                left    : 50% - 4px;
+                top     : 50% - 4px;
+            }
+        }   
+    }
+}

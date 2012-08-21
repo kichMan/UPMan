@@ -1,0 +1,47 @@
+/**
+* ======================================================
+* Coercion of the user properties by default.
+* ======================================================
+* @author Igor Kechaykin
+* @link http://github.com/kichMan/UPMan
+*/
+
+/* Document */
+html, body {
+    margin  : 0;
+    padding : 0;
+    border  : 0;
+    width   : 100%;
+    min-height  : 100%;
+    background  : #fff;
+}
+    
+/* Elements */
+#reset (@width: 100px) {
+    &, div, nav, section, input, button, button:after, .progressbar > span, .wrapper, .wrapper > i
+    {
+        position    : relative;
+        display     : block;
+        margin      : 0;
+        padding     : 0;
+        font        : @fonSize Helvetica, Arial;
+    }
+    
+    hr {
+        height              : 0;
+        border-width        : 1px 0;
+        border-style        : solid;
+        border-top-color    : @borderColor;
+        border-bottom-color : rgb(238, 238, 238);
+    }
+    
+    background  : rgb(255, 255, 255);
+    width       : @width;
+    border      : 1px solid @borderColor;
+    .css3_userSelect(text);
+    
+    
+    .hidden { display: none; }
+    .active { display: block; }
+
+}

@@ -1,0 +1,185 @@
+/**
+* ======================================================
+* This library contains CSS3 properties 
+* and hacks for Cross-browser compatibility.
+*
+* Note: before the compilation, unnecessary to delete.
+* ======================================================
+* @author Igor Kechaykin
+* @link http://github.com/kichMan/UPMan
+*/
+
+/* Properties */
+.css3_animation (@a: rotate 1s infinite linear) {
+    -webkit-animation   : @a;
+    -moz-animation      : @a;
+    -ms-animation       : @a;
+    -o-animation        : @a;
+    animation           : @a;
+}
+
+.css3_bgsize(@s){
+    -webkit-background-size: @s;
+    -moz-background-size: @s;
+    -o-background-size: @s;
+    background-size: @s;
+}
+
+.css3_boxShadow (@bs) {
+    -webkit-box-shadow: @bs;
+    -moz-box-shadow: @bs;
+    box-shadow: @bs;
+}
+
+.css3_gradient {
+    /* Candystriping */
+    .candystriping (@a: "-45deg") {
+        @tmp: e("@{a},rgba(255, 255, 255, .2) 25%,transparent 25%,transparent 50%,rgba(255, 255, 255, .2) 50%,rgba(255, 255, 255, .2) 75%,transparent 75%,transparent");
+        background-image:
+            -webkit-gradient(linear, 0 0, 100% 100%,
+                color-stop(.25, rgba(255, 255, 255, .2)),
+                color-stop(.25, transparent),
+                color-stop(.5, transparent),
+                color-stop(.5, rgba(255, 255, 255, .2)),
+                color-stop(.75, rgba(255, 255, 255, .2)),
+                color-stop(.75, transparent), to(transparent)
+            );
+
+        background-image: e("-webkit-linear-gradient(@{tmp})");
+        background-image: e("-moz-linear-gradient(@{tmp})");
+        background-image: e("-ms-linear-gradient(@{tmp})");
+        background-image: e("-o-linear-gradient(@{tmp})");
+        background-image: e("linear-gradient(@{tmp})");
+    }
+}
+
+.css3_radius (@r: 8px) {
+    -webkit-border-radius: @r;
+    -moz-border-radius: @r;
+    border-radius: @r;
+}
+
+.css3_textShadow (@ts) {
+    text-shadow         : @ts;
+}
+
+.css3_transition (@t) {
+    -webkit-transition: @t;
+    -moz-transition: @t;
+    -ms-transition: @t;
+    -o-transition: @t;
+    transition: @t;
+}
+
+.css3_userSelect (@us: none) {
+    -webkit-user-select: @us;
+    -moz-user-select: @us;
+    -ms-user-select: @us;
+    -o-user-select: @us;
+    user-select: @us;
+}
+
+.opacity (@o) {
+    opacity: @o / 100;
+    filter: ~"alpha(opacity=@{o})";
+}
+
+
+/* FUNCTION */
+.keyframes_rotate (@r: 360deg) {
+    @-webkit-keyframes rotate {
+        to { -webkit-transform: rotate(@r); }
+    }
+
+    @-moz-keyframes rotate {
+        to { -moz-transform: rotate(@r); }
+    }
+
+    @-ms-keyframes rotate {
+        to { -ms-transform: rotate(@r); }
+    }
+
+    @-o-keyframes rotate {
+        to { -o-transform: rotate(@r); }
+    }
+
+    @keyframes rotate {
+        to { transform: rotate(@r); }
+    }
+}
+
+.keyframes_sizeIn (@h: 100px) {
+    overflow : hidden;
+    
+    @-webkit-keyframes sizein {
+        to      { height: 0;  }
+        from    { height: @h; }
+    }
+    @-moz-keyframes sizein {
+        to      { height: 0;  }
+        from    { height: @h; }
+    }
+
+    @-ms-keyframes sizein {
+        to      { height: 0;  }
+        from    { height: @h; }
+    }
+
+    @-o-keyframes sizein {
+        to      { height: 0;  }
+        from    { height: @h; }
+    }
+    @keyframes sizein {
+        to      { height: 0;  }
+        from    { height: @h; }
+    }
+}
+
+.keyframes_sizeOut (@h: 100px) {
+    overflow : hidden;
+    height : 0;
+    
+    @-webkit-keyframes sizeout {
+        to      { height: @h; }
+        from    { height: 0; }
+    }
+    @-moz-keyframes sizeout {
+        to      { height: @h; }
+        from    { height: 0; }
+    }
+    @-ms-keyframes sizeout {
+        to      { height: @h; }
+        from    { height: 0; }
+    }
+    @-o-keyframes sizeout {
+        to      { height: @h; }
+        from    { height: 0; }
+    }
+    @keyframes sizeout {
+        to      { height: @h; }
+        from    { height: 0; }
+    }
+}
+
+.keyframes_candyMove (@b: 50px 50px){
+    @-webkit-keyframes candymove {
+        0% {background-position: 0 0;}
+        100% { background-position: @b; }
+    }
+    @-moz-keyframes candymove {
+        0% {background-position: 0 0;}
+        100% { background-position: @b; }
+    }
+    @-ms-keyframes candymove {
+        0% {background-position: 0 0;}
+        100% { background-position: @b; }
+    }
+    @-o-keyframes candymove {
+        0% {background-position: 0 0;}
+        100% { background-position: @b; }
+    }
+    @keyframes candymove {
+        0% {background-position: 0 0;}
+        100% { background-position: @b; }
+    }
+}
